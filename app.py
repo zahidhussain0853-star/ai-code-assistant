@@ -1,12 +1,18 @@
 from flask import Flask, render_template, request
 import requests
 
+from dotenv import load_dotenv
+import os
+load_dotenv()
+API_KEY = os.getenv("OPENROUTER_API_KEY")
+#print("API KEY APP:", API_KEY)
+
 app = Flask(__name__)
 
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 headers = {
-    "Authorization": "Bearer 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",
+    "Authorization": f"Bearer {API_KEY}",
     "Content-Type": "application/json"
 }
 
