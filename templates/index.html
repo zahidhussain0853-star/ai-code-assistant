@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Code Assistant</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .chat-box {
+            background: #1e293b;
+            padding: 15px;
+            border-radius: 10px;
+            height: 400px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .user {
+            background: #3b82f6;
+            text-align: right;
+        }
+
+        .assistant {
+            background: #334155;
+            text-align: left;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin-top: 10px;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            background: #22c55e;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>🧠 AI Code Assistant</h2>
+
+    <div class="chat-box">
+        {% for msg in chat %}
+            {% if msg.role == "user" %}
+                <div class="message user">
+                    {{ msg.content }}
+                </div>
+            {% elif msg.role == "assistant" %}
+                <div class="message assistant">
+                    {{ msg.content }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <form method="POST">
+        <textarea name="user_input" placeholder="Ask something..." required></textarea>
+        <button type="submit">Send</button>
+    </form>
+
+</body>
+</html>
